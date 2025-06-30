@@ -20,11 +20,6 @@ export const routes: Routes = [
                 canActivate: [AuthGuard],
                 loadComponent: () => import('./business/tables/tables.js').then(m => m.Tables)
             },
-            {
-                path: '',
-                redirectTo: 'dashboard',
-                pathMatch: 'full'
-            }
         ]
     },
     {

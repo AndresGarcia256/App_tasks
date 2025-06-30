@@ -13,7 +13,7 @@ export class AuthGuard implements CanActivate {
       map(isValid => {
         if (isValid) return true;
         this.router.navigate(['/login']);
-        return false;
+        return false; 
       }),
       catchError(() => {
         this.router.navigate(['/login']);

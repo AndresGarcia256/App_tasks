@@ -23,8 +23,7 @@ export class Auth {
       { email, password, redirect: false },
       {
         withCredentials: true,
-        headers: { 'Accept': 'application/json' },
-        responseType: 'text'
+        headers: { 'Accept': 'application/json' }
       }
     );
   }
@@ -35,7 +34,6 @@ export class Auth {
     headers: { 'Accept': 'application/json' },
     responseType: 'text'
   }).pipe(
-    // Limpiar cache después de la respuesta del backend
     tap(() => {
       localStorage.clear();
       sessionStorage.clear();
@@ -50,14 +48,8 @@ export class Auth {
       responseType: 'text'
     });
   }
-  
-  isLoggedIn(): boolean {
-    return !!localStorage.getItem(this.tokenKey) || !!sessionStorage.getItem(this.tokenKey);
-  }
-  
-  getToken(): string | null {
-    return localStorage.getItem(this.tokenKey) || sessionStorage.getItem(this.tokenKey);
-  }
+
+
 }
 
 export async function OPTIONS() {

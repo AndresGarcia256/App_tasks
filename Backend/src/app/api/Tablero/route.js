@@ -4,6 +4,7 @@ import { BoardModel } from "@/models/Tablero.js";
 import { handleApiError } from "@/utils/handleApiError";
 import { getUserIP } from "@/utils/GetUserIP";
 import { applyRateLimit } from "@/utils/rateLimiter";
+
 export const GET = async (req , res) => {
     await connectDB();
     try {

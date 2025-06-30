@@ -2,7 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 60vh;         /* Menos alto */
+  min-height: 60vh; 
   padding: 0;
 }
 
@@ -10,13 +10,13 @@
   background: #fff;
   border-radius: 1rem;
   box-shadow: 0 2px 8px 0 rgba(30,41,59,0.08);
-  padding: 2rem 4rem;       /* Más ancho */
+  padding: 2rem 4rem;
   display: flex;
-  flex-direction: row;      /* Horizontal */
+  flex-direction: row;    
   align-items: center;
-  min-width: 500px;         /* Más ancho */
-  min-height: 200px;        /* Menos alto */
-  gap: 2.5rem;              /* Espacio entre avatar e info */
+  min-width: 500px;         
+  min-height: 200px;        
+  gap: 2.5rem;              
 }
 
 .profile-avatar {
@@ -83,12 +83,13 @@
 
 .profile-section {
   display: flex;
-  align-items: center;
+  align-items: left;
   gap: 2rem;
   margin-bottom: 2rem;
 }
 
 .profile-label {
+  text-align: center;
   font-weight: 600;
   color: #222;
   margin-bottom: 0.5rem;

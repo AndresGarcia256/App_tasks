@@ -1,11 +1,30 @@
 import { Component } from '@angular/core';
-
+import { Auth } from '../../../core/services/auth';
+import { RouterLink, Router } from '@angular/router';
 @Component({
   selector: 'app-header',
-  imports: [],
+  imports: [RouterLink],
   templateUrl: './header.html',
   styleUrl: './header.css'
 })
 export class Header {
+  nombre: string = '';
+  email: string = '';
 
+  constructor(private auth: Auth) {}
+
+  ngOnInit() {
+    this.auth.checkSession().subscribe({
+      next: (res) => {
+        const user = typeof res === 'string' ? JSON.parse(res).user : "";
+        this.nombre = user?.name || '';
+      },
+      error: (err) => {
+        this.nombre = '';
+      }
+    });
+  }
+  
 }
+
+

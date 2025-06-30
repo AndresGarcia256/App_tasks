@@ -7,7 +7,7 @@
     <div>
       <label class="profile-label">Foto de perfil</label>
       <div class="profile-avatar-large">
-        <span class="profile-avatar-text">A</span>
+        <span class="profile-avatar-text">{{ nombre[0] }}</span>
       </div>
     </div>
   </div>
@@ -16,21 +16,15 @@
     <div class="profile-info-row">
       <div>
         <span class="profile-info-label">Nombre</span>
-        <div class="profile-info-value">Andrés García García</div>
+        <div class="profile-info-value">{{ nombre }}</div>
       </div>
     </div>
     <div class="profile-info-row">
       <div>
         <span class="profile-info-label">Correo electrónico</span>
-        <div class="profile-info-value">jaiderandres.garciagarcia.com</div>
+        <div class="profile-info-value">{{ email }}</div>
       </div>
-    </div>
-    <div class="profile-info-row">
-      <div>
-        <span class="profile-info-label">Rol</span>
-        <div class="profile-info-value">Administrador</div>
-      </div>
-    </div>
+    </div>  
     <div class="profile-info-row">
       <div>
         <span class="profile-info-label">Contraseña</span>
