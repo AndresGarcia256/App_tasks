@@ -1,0 +1,144 @@
+.background {
+  position: absolute;
+  top: 0; left: 0; bottom: 0; width: 100vw; height: 100vh;
+  background: linear-gradient(to bottom, #1a202c, #1a202c 50%, #6b21a8 100%);
+  z-index: 0;
+}
+.container {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  z-index: 1;
+}
+.welcome-section {
+  color: #d1d5db;
+  max-width: 400px;
+  margin-right: 2rem;
+  display: none;
+}
+@media (min-width: 1024px) {
+  .welcome-section {
+    display: flex;
+    flex-direction: column;
+  }
+}
+.welcome-section h1 {
+  margin-bottom: 1rem;
+  font-size: 2.25rem;
+  font-weight: 600;
+}
+.welcome-section p {
+  font-size: 0.875rem;
+  opacity: 0.75;
+}
+.form-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.form-box {
+  background: #fff;
+  border-radius: 1.5rem;
+  padding: 3rem;
+  width: 24rem;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+.form-header h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1f2937;
+}
+.form-header p {
+  color: #9ca3af;
+  font-size: 1rem;
+}
+.form-header a {
+  color: #7c3aed;
+  text-decoration: none;
+}
+.form-body input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid #e5e7eb;
+  background: #e5e7eb;
+  font-size: 1rem;
+}
+.form-body input:focus {
+  outline: none;
+  border-color: #a78bfa;
+  background: #f3f4f6;
+}
+.forgot-password {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+.forgot-password a {
+  color: #7c3aed;
+  text-decoration: none;
+}
+.btn-primary {
+  width: 100%;
+  background: #6d28d9;
+  color: #fff;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 1rem;
+  transition: background 0.3s;
+}
+.btn-primary:hover {
+  background: #5b21b6;
+}
+.divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 1.25rem 0;
+  color: #d1d5db;
+}
+.divider span {
+  padding: 0 1rem;
+}
+.btn-google, .btn-facebook {
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  border: 1px solid #d1d5db;
+  background: #fff;
+  color: #6b7280;
+  font-weight: 500;
+  margin-bottom: 0.75rem;
+  cursor: pointer;
+  transition: background 0.3s, border 0.3s;
+}
+.btn-google:hover, .btn-facebook:hover {
+  background: #1f2937;
+  color: #fff;
+  border-color: #111827;
+}
+/* Agrega esto a tu register.css */
+.custom-alert {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  background: #fdecea;
+  color: #b91c1c;
+  border: 1px solid #fca5a5;
+  border-radius: 0.5em;
+  padding: 0.75em 1em;
+  margin: 1em 0;
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.alert-icon {
+  font-size: 1.3em;
+  color: #b91c1c;
+}

@@ -24,7 +24,19 @@ export const routes: Routes = [
         ]
     },
     {
+        path: 'login',
+        loadComponent: () => import('./auth/login/login.js').then(m => m.Login),
+        
+    },
+        {
+        path: 'register',
+        loadComponent: () => import('./auth/register/register.js').then(m => m.Register),
+        
+    },
+    {
         path: '**',
         redirectTo: 'dashboard'
     }
+
+    
 ];
