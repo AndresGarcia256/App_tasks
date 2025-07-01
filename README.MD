@@ -73,7 +73,7 @@
  **Nota importante:**  
  La primera vez que inicies el servidor backend, cada endpoint puede tardar algunos segundos en responder, ya que el servidor estará cargando los módulos y realizando la compilación inicial. Ten paciencia, este proceso solo ocurre en el primer arranque.
 
-Para esta prueba tecnica se dara la configuracion del env.local este esta conectado a mongodb Atlas el cual es un servicio en la nube
+Para esta prueba tecnica se dara la configuracion del env.local este esta conectado a mongodb Atlas el cual es un servicio de alamacenamiento en la nube
 
 ---
 ---
