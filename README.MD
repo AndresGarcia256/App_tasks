@@ -70,6 +70,10 @@
 - Accede a la aplicación desde tu navegador en `http://localhost:4200` (Angular frontend).
 - El backend corre por defecto en `http://localhost:3000`.
 
+ **Nota importante:**  
+ La primera vez que inicies el servidor backend, cada endpoint puede tardar algunos segundos en responder, ya que el servidor estará cargando los módulos y realizando la compilación inicial. Ten paciencia, este proceso solo ocurre en el primer arranque.
+
+---
 ---
 
 ## 💡 Uso básico
