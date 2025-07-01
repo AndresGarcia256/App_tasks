@@ -70,12 +70,9 @@
 - Accede a la aplicación desde tu navegador en `http://localhost:4200` (Angular frontend).
 - El backend corre por defecto en `http://localhost:3000`.
 
- **Nota importante:**  
- La primera vez que inicies el servidor backend, cada endpoint puede tardar algunos segundos en responder, ya que el servidor estará cargando los módulos y realizando la compilación inicial. Ten paciencia, este proceso solo ocurre en el primer arranque.
+> **Nota importante:**  
+> La primera vez que inicies el servidor backend, cada endpoint puede tardar algunos segundos en responder, ya que el servidor estará cargando los módulos y realizando la compilación inicial. Ten paciencia, este proceso solo ocurre en el primer arranque.
 
-Para esta prueba tecnica se dara la configuracion del env.local este esta conectado a mongodb Atlas el cual es un servicio de alamacenamiento en la nube
-
----
 ---
 
 ## 💡 Uso básico
@@ -84,6 +81,43 @@ Para esta prueba tecnica se dara la configuracion del env.local este esta conect
 2. Crea tableros para organizar tus tareas según proyecto o categoría.
 3. Añade, edita, marca como completadas o elimina tus tareas.
 4. Utiliza el buscador para encontrar tareas específicas rápidamente.
+
+---
+
+## 🗂️ Estructura del Frontend
+
+La estructura del frontend está diseñada para la claridad, reutilización de componentes y separación de responsabilidades.  
+![image1](image1)
+
+**Principales carpetas y su propósito:**
+
+- **src/app/auth/**  
+  Módulo de autenticación. Incluye:
+  - **login/**: Componentes y lógica para el inicio de sesión.
+  - **register/**: Componentes y lógica para el registro de usuarios.
+
+- **src/app/business/**  
+  Módulo de lógica de negocio. Incluye:
+  - **dashboard/**: Panel principal del usuario.
+  - **profile/**: Gestión del perfil de usuario.
+  - **tables/**: Gestión de tableros (boards).
+  - **tasks/**: Gestión de tareas.
+
+- **src/core/services/**  
+  Servicios principales de la aplicación, implementados como inyectables de Angular:
+  - **auth/**: Servicio de autenticación (login, registro, logout, manejo de sesión).
+  - **AuthGuard/**: Guard para proteger rutas que requieren autenticación.
+  - **board/**: Servicio para operaciones sobre tableros.
+  - **tasks/**: Servicio para operaciones sobre tareas.
+
+- **src/shared/components/**  
+  Componentes reutilizables y elementos de interfaz:
+  - **footer/**: Pie de página.
+  - **header/**: Encabezado/principal barra de navegación.
+  - **layout/**: Estructura y disposición general de la aplicación.
+  - **sidebar/**: Menú lateral.
+
+> Cada carpeta contiene los módulos, componentes, servicios y vistas necesarios para aislar funcionalidades y facilitar la escalabilidad del frontend.
 
 ---
 
@@ -110,3 +144,17 @@ La API RESTful está organizada en tres módulos: autenticación, tableros y tar
 - **GET `/api/Tarea/Gettasks`**: Obtener tareas de un usuario o tablero.
 
 > Todos los endpoints están definidos en archivos `routes.js` específicos para cada módulo, lo que facilita el mantenimiento y la escalabilidad.
+
+---
+
+## 📬 Contribuciones
+
+¡Las contribuciones son bienvenidas! Siéntete libre de abrir issues o pull requests para sugerencias, reportes de bugs o mejoras.
+
+---
+
+## 📄 Licencia
+
+Este proyecto está bajo la licencia MIT. Consulta el archivo LICENSE para más información.
+
+---
