@@ -76,7 +76,6 @@ export class Dashboard {
     this.showAddForm = true;
     this.boardForm.reset();
   }
-
   onSubmit() {
     if (this.boardForm.valid) {
       const newBoard = {
@@ -91,7 +90,7 @@ export class Dashboard {
         },
         error: (err) => {
           this.showAddForm = false;
-          console.error('Error al eliminar:', err);
+          console.error('Error al crear tablero:', err);
           this.getBoards();
         },
       });

@@ -11,7 +11,7 @@ import { CommonModule } from '@angular/common';
 })
 export class Sidebar {
   constructor(private auth: Auth, private router: Router) {}
-
+  //Esta funcion nos permite añadir funcionalidad al boton de cerrar sesion, llamando al bakcend y borrando el token/coockie que tiene para la autorizacion de la cuenta
   logout() {
     this.auth.logout().subscribe({
       next: res => {

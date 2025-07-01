@@ -12,7 +12,7 @@ export class Header {
   email: string = '';
 
   constructor(private auth: Auth) {}
-
+  //Cada vez que se inia el componente carga la informacion del nombre del usuario para ser motrado en el componente
   ngOnInit() {
     this.auth.checkSession().subscribe({
       next: (res) => {

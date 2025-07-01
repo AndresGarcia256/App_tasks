@@ -5,14 +5,15 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root',
 })
 export class Tasks {
-  private tokenKey = 'token';
   constructor(private httpCliente: HttpClient) {}
-  Deletetask(idboard: string) {
+
+  //Esta funcion permite borrar tareas recibiendo el id de la tarea
+  Deletetask(idtask: string) {
     return this.httpCliente.delete(
-      `http://localhost:3000/api/Tarea/borrartarea?id=${idboard}`
+      `http://localhost:3000/api/Tarea/borrartarea?id=${idtask}`
     );
   }
-
+  // Esta funcion permite crear una tarea envviando toda la informacion necesaria para crear la tarea
   Createtask(taskData: {
     title: string;
     status: string;
@@ -25,7 +26,7 @@ export class Tasks {
       taskData
     );
   }
-
+  // Esta funcion permite obtener todas las tareas asociadas a un tablero
   Gettask(boardId: string) {
     return this.httpCliente.get<any>(
       `http://localhost:3000/api/Tarea/Gettasks?id=${boardId}`,
@@ -34,12 +35,14 @@ export class Tasks {
       }
     );
   }
+  // Esta funcion permite obtener obtener toda la lista de tareas asociadas a una cuenta por owner id, ademas busca entre un arreglo de ellas
   Gettasklist(search: string, ownerId: string) {
     return this.httpCliente.post<any>(
       'http://localhost:3000/api/Tarea/FindTasks',
       { search, ownerId }
     );
   }
+  // Esta funcion permite editar componentes claves de las tareas
   editTask2(id: string, title: string, status: string) {
     console.log(id,title,status);
   return this.httpCliente.put<any>(

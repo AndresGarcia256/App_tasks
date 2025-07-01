@@ -56,7 +56,7 @@ export class Taskss {
       },
     });
   }
-  //metodo para crear tareas
+  //metodo para crear tareas 
   createtask(
     title: string,
     status: string,
@@ -107,7 +107,7 @@ export class Taskss {
     );
     this.createTaskFormVisible = false;
   }
-  //Editar tareas
+  //Editar tareas variables y mostrar el formulario
 
   editID: string = "";
   editStatus: string = '';
@@ -118,6 +118,8 @@ export class Taskss {
     this.showEditForm = false;
     this.editValue = '';
   }
+
+  //Este metodo permite editar las tareas y el metodo posterior hace la peticion para guardarlas en la base de datos
   editTask(title:string, status:string,id:string) {
     this.editID = id;
     this.showEditForm = true;
@@ -125,7 +127,6 @@ export class Taskss {
     this.editStatus = status ;
     console.log(this.editID , this.editValue, this.editStatus);
   }
-
   Savetask() {
   this.taskService.editTask2( this.editID,this.editValue, this.editStatus)
     .subscribe({
@@ -140,7 +141,7 @@ export class Taskss {
     });
   }
 
-  //Metodo para recuperar las tareas de la base de datos
+  //Metodo para recuperar las tareas de la base de datos y para clasificarlas segun su progreso
   gettask() {
     if (!this.boardId) {
       console.error('No task found');

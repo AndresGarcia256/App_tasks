@@ -12,7 +12,7 @@ export class Profile implements OnInit {
   email: string = '';
 
   constructor(private auth: Auth) {}
-
+  // Esto tomara la informacion del usuario para mostrarla cuando haga click en el perfil
   ngOnInit() {
     this.auth.checkSession().subscribe({
       next: (res) => {

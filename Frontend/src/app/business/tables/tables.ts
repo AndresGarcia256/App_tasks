@@ -25,6 +25,7 @@ export class Tables {
   id: string = '';
   searchText: string = '';
   tareas: Tarea[] = [];
+  //Esta funcion permite obtener el id del usuario para posteriormente obtener las busquedas
   ngOnInit() {
     this.auth.checkSession().subscribe({
       next: (res) => {
@@ -40,7 +41,7 @@ export class Tables {
     });
   }
   constructor(private tasksService: Tasks, private auth: Auth,private router: Router) {}
-
+  // Esta funcion permite buscar tareas con nombres especificos
   buscarTareas() {
   this.tasksService.Gettasklist(this.searchText, this.id).subscribe({
     next: (Response) => {
@@ -51,7 +52,8 @@ export class Tables {
     },
   });
 }
-goToTask(boardId: string | number) {
+  //Esta funcion permite que el usuario pueda dar click a sus busquedas para ir al tablero donde se encuentra la tarea
+  goToTask(boardId: string | number) {
     this.router.navigate(['/tasks', boardId]);
   }
 }

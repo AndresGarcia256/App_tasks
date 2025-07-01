@@ -18,7 +18,7 @@ export class Register {
   errorMsg: string | null = null;
 
   constructor(private auth: Auth, private router: Router) {}
-
+ // Cuando se le de click al boton tomara los datos del formulario y los enviara para consumir el servicio para registrar una cuenta nueva
   onSubmit() {
     if (this.registerForm.valid) {
       const formData = this.registerForm.value;

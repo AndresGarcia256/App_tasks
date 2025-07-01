@@ -7,6 +7,7 @@ import { map, catchError } from 'rxjs/operators';
 @Injectable({ providedIn: 'root' })
 export class AuthGuard implements CanActivate {
   constructor(private auth: Auth, private router: Router) {}
+  //Esta funcion permite revisar si la sesion  sigue activa 
   canActivate(): Observable<boolean> {
     return this.auth.checkSession().pipe(
       map(isValid => {

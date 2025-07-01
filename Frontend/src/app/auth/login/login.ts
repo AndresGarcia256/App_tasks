@@ -20,7 +20,7 @@ export class Login {
   errorMsg: string | null = null;
 
   constructor(private auth: Auth, private router: Router) {}
-
+ // Cuando se le de click al boton tomara los datos del formulario y los enviara para consumir el servicio para verificar si la cuenta existe y si la contraseña es correcta
   onSubmit() {
     if (this.loginForm.valid) {
       const formData = this.loginForm.value;

@@ -7,16 +7,14 @@ import { tap } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class Auth {
-
-  private URL = 'http://localhost:3000/api/auth/Register';
-  private tokenKey = 'token';
-  
   constructor(private httpCliente: HttpClient) { }
 
-  
+  //Esta funcion permite hacer el registro en la apliacion
   register(userData: { name: string; email: string; password: string }) {
-    return this.httpCliente.post(this.URL, userData);
+    return this.httpCliente.post('http://localhost:3000/api/auth/Register', userData);
   }
+
+  // Esta funcion permite hacer login haciendo un llamado al backend
   login(email: string, password: string) {
     return this.httpCliente.post(
       'http://localhost:3000/api/auth/Login',
@@ -27,7 +25,7 @@ export class Auth {
       }
     );
   }
-  // En tu servicio Auth de Angular
+  // Este funcion permite borrar la informacion de lacockie al cerrar la cuenta borrando asi la sesion 
  logout() {
   return this.httpCliente.post('http://localhost:3000/api/auth/signout', {}, {
     withCredentials: true,
@@ -41,6 +39,7 @@ export class Auth {
     })
   );
 }
+  //esta funcion permite revisar si la sesion sigue iniciada
   checkSession() {
     return this.httpCliente.get('http://localhost:3000/api/auth/sesion', {
       withCredentials: true,
@@ -48,18 +47,4 @@ export class Auth {
       responseType: 'text'
     });
   }
-
-
-}
-
-export async function OPTIONS() {
-  return new Response(null, {
-    status: 204,
-    headers: {
-      "Access-Control-Allow-Origin": "http://localhost:4200",
-      "Access-Control-Allow-Methods": "GET,POST,OPTIONS",
-      "Access-Control-Allow-Headers": "Content-Type",
-      "Access-Control-Allow-Credentials": "true"
-    }
-  });
 }
