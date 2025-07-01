@@ -1,6 +1,6 @@
-# App_tasks
+# SIGO (Sistema de Gestión Occidente)
 
-**App_tasks** es una aplicación para la gestión eficiente de tareas, desarrollada con TypeScript, HTML, JavaScript y CSS. Este repositorio contiene todo lo necesario para que puedas ejecutar, mantener y extender la aplicación.
+**SIGO** es una aplicación para la gestión eficiente de tareas, desarrollada con TypeScript, HTML, JavaScript y CSS. Este repositorio contiene todo lo necesario para que puedas ejecutar, mantener y extender la aplicación.
 
 ---
 
@@ -22,7 +22,8 @@
 - **HTML** (26.2%)
 - **JavaScript** (23.6%)
 - **CSS** (21.2%)
-- **Node.js**, **Express** y **MongoDB** en backend
+- **Node.js** y **MongoDB** en backend
+- **Angular**, **tailwindcss** y **CSS** en frontend
 
 ---
 
@@ -42,8 +43,6 @@
    USER=nombre_del_usuario_admin
    HOST=localhost
    MONGODB_URI=tu_uri_de_mongodb
-   NEXTAUTH_URL=http://localhost:3000
-   NEXTAUTH_SECRET=tu_clave_secreta
    ```
    > Si usas MongoDB Atlas, asegúrate de autorizar tu IP para acceder a la base de datos desde tu equipo.
 
