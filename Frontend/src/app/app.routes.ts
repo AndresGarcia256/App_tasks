@@ -3,7 +3,7 @@ import {AuthGuard} from './core/services/AuthGuard/AuthGuard.js';
 export const routes: Routes = [
     {
         path: '',
-        loadComponent: () => import('./shared/components/layout/layout.js').then(m => m.Layout),
+        loadComponent: () => import('./shared/layout/layout.js').then(m => m.Layout),
         children: [
             {
                 path: 'dashboard',
