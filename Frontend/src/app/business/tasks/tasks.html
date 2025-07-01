@@ -1,47 +1,64 @@
 <div class="tasks-board">
   <div class="tasks-column">
     <div class="tasks-column-label"> 
-      Por hacer
-      <button class="add-btn" title="Agregar tarea" (click)="agregarTarea('porHacer')">➕</button>
+      Por hacer 
+      <button class="add-btn" title="Agregar tarea" (click)="showCreateTaskForm('por_hacer')">➕</button>
     </div>
-    <div class="postit" *ngFor="let tarea of tareasPorHacer; let i = index">
-      {{ tarea }}
-      <button class="edit-btn" title="Editar" (click)="editarTarea(i, 'porHacer')">✏️</button>
-      <button class="delete-btn" title="Eliminar" (click)="eliminarTarea(i, 'porHacer')">🗑️</button>
+    <div class="postit" *ngFor="let tarea of tareasPorHacer;">
+      {{ tarea.title }}  
+      <button class="edit-btn" title="Editar" (click)="editTask(tarea.title, tarea.status,tarea._id)">✏️</button>
+      <button class="delete-btn" title="Eliminar" (click)="Deletetasks(tarea._id)">🗑️</button>
     </div>
   </div>
   <div class="tasks-column">
     <div class="tasks-column-label">
       En curso
-      <button class="add-btn" title="Agregar tarea" (click)="agregarTarea('enCurso')">➕</button>
+      <button class="add-btn" title="Agregar tarea" (click)="showCreateTaskForm('en_progreso')">➕</button>
     </div>
     <div class="postit" *ngFor="let tarea of tareasEnProgreso; let i = index">
-      {{ tarea }}
-      <button class="edit-btn" title="Editar" (click)="editarTarea(i, 'enCurso')">✏️</button>
-      <button class="delete-btn" title="Eliminar" (click)="eliminarTarea(i, 'enCurso')">🗑️</button>
+      {{ tarea.title }}
+      <button class="edit-btn" title="Editar" (click)="editTask(tarea.title, tarea.status,tarea._id)">✏️</button>
+      <button class="delete-btn" title="Eliminar" (click)="Deletetasks(tarea._id)">🗑️</button>
     </div>
   </div>
   <div class="tasks-column">
     <div class="tasks-column-label">
       Finalizada
-      <button class="add-btn" title="Agregar tarea" (click)="agregarTarea('finalizadas')">➕</button>
+      <button class="add-btn" title="Agregar tarea" (click)="showCreateTaskForm('completada')">➕</button>
     </div>
     <div class="postit" *ngFor="let tarea of tareasCompletadas; let i = index">
-      {{ tarea }}
-      <button class="edit-btn" title="Editar" (click)="editarTarea(i, 'finalizadas')">✏️</button>
-      <button class="delete-btn" title="Eliminar" (click)="eliminarTarea(i, 'finalizadas')">🗑️</button>
+      {{ tarea.title }}
+      <button class="edit-btn" title="Editar" (click)="editTask(tarea.title, tarea.status,tarea._id)">✏️</button>
+      <button class="delete-btn" title="Eliminar" (click)="Deletetasks(tarea._id)">🗑️</button>
     </div>
   </div>
 </div>
 
-<!-- Formulario modal para editar tarea -->
 <div *ngIf="showEditForm" class="modal-overlay">
   <div class="modal-content">
     <h3>Editar tarea</h3>
     <input [(ngModel)]="editValue" type="text" style="width: 100%; margin-bottom: 1rem;" />
+
+    <!-- Select para el estado -->
+    <select [(ngModel)]="editStatus" style="width: 100%; margin-bottom: 1rem;">
+      <option value="por_hacer">Por hacer</option>
+      <option value="en_progreso">En progreso</option>
+      <option value="completada">Completada</option>
+    </select>
+
     <div style="text-align: right;">
-      <button (click)="guardarEdicion()">Guardar</button>
+      <button (click)="Savetask()">Guardar</button>
       <button (click)="cancelarEdicion()" style="margin-left: 8px;">Cancelar</button>
+    </div>
+  </div>
+</div>
+<div *ngIf="createTaskFormVisible" class="modal-overlay">
+  <div class="modal-content">
+    <h3>Crear tarea</h3>
+    <input [(ngModel)]="newTaskTitle" placeholder="Título" style="width: 100%; margin-bottom: 0.5rem;" />
+    <div style="text-align: right;">
+      <button (click)="saveCreateTask()">Crear</button>
+      <button (click)="cancelCreateTask()" style="margin-left: 8px;">Cancelar</button>
     </div>
   </div>
 </div>

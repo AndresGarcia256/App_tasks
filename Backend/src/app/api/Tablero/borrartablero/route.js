@@ -1,4 +1,5 @@
 import { BoardModel } from "@/models/Tablero";
+import { TaskModel } from "@/models/Tarea";
 import connectDB from "@/app/lib/db.js";
 import { NextResponse } from "next/server";
 
@@ -35,6 +36,7 @@ export async function DELETE(req) {
       return corsResponse({ error: "ID requerido" }, 400);
     }
     const deletedBoard = await BoardModel.findByIdAndDelete(id);
+    const TaskModel = await TaskModel.findByIdAndDelete(id);
     if (!deletedBoard) {
       return corsResponse({ error: "Tablero no encontrado" }, 404);
     }

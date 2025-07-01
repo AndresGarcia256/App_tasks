@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Auth } from '../../core/services/auth/auth';
 import { FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common'; 
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-register',
   imports: [ReactiveFormsModule, CommonModule],
@@ -17,7 +17,7 @@ export class Register {
   });
   errorMsg: string | null = null;
 
-  constructor(private auth: Auth) {}
+  constructor(private auth: Auth, private router: Router) {}
 
   onSubmit() {
     if (this.registerForm.valid) {
@@ -28,7 +28,21 @@ export class Register {
         password: formData.password ?? ''
       }).subscribe({
         next: res => {
-          console.log('Registro exitoso', res);
+          this.auth.login(
+            formData.email ?? '',
+            formData.password ?? ''
+          ).subscribe({
+            next: res => {
+              console.log('Login exitoso', res);
+              this.router.navigate(['/dashboard']); 
+              this.errorMsg = null;
+            },
+            error: err => {
+              console.error('Error en login', err);
+              this.errorMsg = err.error.error || 'El correo o la contraseña son incorrectos';
+            }
+          });
+
           this.errorMsg = null;
         },
         error: err => {

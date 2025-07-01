@@ -22,13 +22,11 @@ const userSchema = new mongoose.Schema(
             minlength: 6,
             select: false 
         }
-
     },
     {
         timestamps: true,
         versionKey: false
     }
 );
-
 
 export const userModel = mongoose?.models?.User || mongoose.model("User", userSchema);

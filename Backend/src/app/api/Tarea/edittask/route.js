@@ -2,7 +2,6 @@ import { TaskModel } from "@/models/Tarea";
 import connectDB from "@/app/lib/db.js";
 import { NextResponse } from "next/server";
 
-
 function corsResponse(body, status = 200) {
   return NextResponse.json(body, {
     status,
@@ -25,19 +24,32 @@ export async function OPTIONS() {
   });
 }
 
-export async function GET(req) {
+// Crear nueva tarea
+export async function POST(req) {
   await connectDB();
   try {
-    const { searchParams } = new URL(req.url);
-    const boardId = searchParams.get('id');
-    if (!boardId) {
-      return corsResponse({ error: "Falta el parámetro id" }, 400);
+    const body = await req.json();
+    const newTask = await TaskModel.create(body);
+    return corsResponse({ data: newTask }, 200);
+  } catch (error) {
+    return corsResponse({ error: error.message || "Error interno" }, 500);
+  }
+}
+
+// Modificar tarea existente
+export async function PUT(req) {
+  await connectDB();
+  try {
+    const body = await req.json();
+    const { _id, ...updateFields } = body;
+    if (!_id) {
+      return corsResponse({ error: "Falta el _id de la tarea." }, 400);
     }
-    console.log("Obteniendo tareas para el tablero:", boardId);
-
-    const userBoards = await TaskModel.find({boardId: boardId});
-
-    return corsResponse({ data: userBoards }, 200);
+    const updatedTask = await TaskModel.findByIdAndUpdate(_id, updateFields);
+    if (!updatedTask) {
+      return corsResponse({ error: "Tarea no encontrada." }, 404);
+    }
+    return corsResponse({ data: updatedTask }, 200);
   } catch (error) {
     return corsResponse({ error: error.message || "Error interno" }, 500);
   }

@@ -11,7 +11,7 @@ export class Boards {
     return this.httpCliente.delete(`http://localhost:3000/api/Tablero/borrartablero?id=${idboard}`);
   }
 
-  Createboard(userData: { name: string, description: string, ownerId: string }) {
+  Createboard(userData: { name: string, description: string, ownerId: string, }) {
     return this.httpCliente.post('http://localhost:3000/api/Tablero/CreateBoard', userData);
   }
 

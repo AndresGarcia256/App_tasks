@@ -1,8 +1,7 @@
-import { BoardModel } from "@/models/Tablero";
+import { TaskModel } from "@/models/Tarea";
 import connectDB from "@/app/lib/db.js";
-import { handleApiError } from "@/utils/handleApiError";
 import { NextResponse } from "next/server";
-import { applyRateLimit } from "@/utils/rateLimiter";
+import mongoose from "mongoose";
 
 function corsResponse(body, status = 200) {
   return NextResponse.json(body, {
@@ -26,21 +25,30 @@ export async function OPTIONS() {
   });
 }
 
-export async function GET(req) {
+export async function POST(req) {
   await connectDB();
   try {
-    const { searchParams } = new URL(req.url);
-    const userId = searchParams.get('id');
-    if (!userId) {
-      return corsResponse({ error: "Falta el parámetro id" }, 400);
+    const body = await req.json();
+    const { search, ownerId } = body; 
+    const createdBy = ownerId;
+    let query = {};
+   
+    if (search && search.trim() !== "") {
+      query.title = { $regex: search, $options: "i" };
     }
-    const userBoards = await BoardModel.find({
-      $or: [
-        { ownerId: userId },
-        { members: userId }
-      ]
-    });
-    return corsResponse(userBoards, 200);
+    console.log(createdBy);
+    if (createdBy && createdBy.length === 5) {
+      query.createdBy = { $in: [new ObjectId(createdBy)] };
+    }
+
+    const tasks = await TaskModel.find(
+  {
+    title: { $regex: search, $options: "i" },
+    createdBy: createdBy 
+  }
+);
+console.log(tasks);
+    return corsResponse({ response: tasks }, 200);
   } catch (error) {
     return corsResponse({ error: error.message || "Error interno" }, 500);
   }
