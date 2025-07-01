@@ -1,6 +1,9 @@
 import { TaskModel } from "@/models/Tarea";
 import connectDB from "@/app/lib/db.js";
 import { NextResponse } from "next/server";
+import { getUserIP } from "@/utils/GetUserIP";
+import { applyRateLimit } from "@/utils/rateLimiter";
+
 
 function corsResponse(body, status = 200) {
   return NextResponse.json(body, {
@@ -27,6 +30,9 @@ export async function OPTIONS() {
 }
 
 export async function DELETE(req) {
+  const userip = await getUserIP(req);
+await applyRateLimit(userip);
+
   await connectDB();
   try {
     const { searchParams } = new URL(req.url);

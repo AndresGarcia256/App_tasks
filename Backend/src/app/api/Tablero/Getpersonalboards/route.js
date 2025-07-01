@@ -2,6 +2,7 @@ import { BoardModel } from "@/models/Tablero";
 import connectDB from "@/app/lib/db.js";
 import { handleApiError } from "@/utils/handleApiError";
 import { NextResponse } from "next/server";
+import { getUserIP } from "@/utils/GetUserIP";
 import { applyRateLimit } from "@/utils/rateLimiter";
 
 function corsResponse(body, status = 200) {
@@ -27,6 +28,9 @@ export async function OPTIONS() {
 }
 
 export async function GET(req) {
+  const userip = await getUserIP(req);
+  await applyRateLimit(userip);
+
   await connectDB();
   try {
     const { searchParams } = new URL(req.url);

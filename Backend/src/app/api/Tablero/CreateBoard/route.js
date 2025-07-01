@@ -1,6 +1,8 @@
 import { BoardModel } from "@/models/Tablero";
 import connectDB from "@/app/lib/db.js";
 import { NextResponse } from "next/server";
+import { getUserIP } from "@/utils/GetUserIP";
+import { applyRateLimit } from "@/utils/rateLimiter";
 
 function corsResponse(body, status = 200) {
   return NextResponse.json(body, {
@@ -25,6 +27,9 @@ export async function OPTIONS() {
 }
 
 export async function POST(req) {
+  const userip = await getUserIP(req);
+  await applyRateLimit(userip);
+
   await connectDB();
   try {
     console.log("Conectado a la base de datos");
@@ -33,7 +38,7 @@ export async function POST(req) {
     const newBoard = await BoardModel.create(body);
     return NextResponse.json({ data: newBoard }, { status: 200 });
 
-} catch (error) {
+  } catch (error) {
     return corsResponse({ error: error.message || "Error interno" }, 500);
   }
 }

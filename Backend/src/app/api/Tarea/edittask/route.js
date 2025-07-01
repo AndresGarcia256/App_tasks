@@ -1,6 +1,10 @@
 import { TaskModel } from "@/models/Tarea";
 import connectDB from "@/app/lib/db.js";
 import { NextResponse } from "next/server";
+import { getUserIP } from "@/utils/GetUserIP";
+import { applyRateLimit } from "@/utils/rateLimiter";
+
+
 
 function corsResponse(body, status = 200) {
   return NextResponse.json(body, {
@@ -38,6 +42,9 @@ export async function POST(req) {
 
 // Modificar tarea existente
 export async function PUT(req) {
+  const userip = await getUserIP(req);
+  await applyRateLimit(userip);
+
   await connectDB();
   try {
     const body = await req.json();

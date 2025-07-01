@@ -2,6 +2,9 @@ import { TaskModel } from "@/models/Tarea";
 import connectDB from "@/app/lib/db.js";
 import { NextResponse } from "next/server";
 
+import { getUserIP } from "@/utils/GetUserIP";
+import { applyRateLimit } from "@/utils/rateLimiter";
+
 function corsResponse(body, status = 200) {
   return NextResponse.json(body, {
     status,
@@ -25,12 +28,16 @@ export async function OPTIONS() {
 }
 
 export async function POST(req) {
+  const userip = await getUserIP(req);
+  await applyRateLimit(userip);
+
   await connectDB();
-  try {;
+  try {
+    ;
     const body = await req.json();
     const newBoard = await TaskModel.create(body);
     return NextResponse.json({ data: newBoard }, { status: 200 });
-} catch (error) {
+  } catch (error) {
     return corsResponse({ error: error.message || "Error interno" }, 500);
   }
 }

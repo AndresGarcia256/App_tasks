@@ -2,6 +2,8 @@ import { TaskModel } from "@/models/Tarea";
 import connectDB from "@/app/lib/db.js";
 import { NextResponse } from "next/server";
 import mongoose from "mongoose";
+import { getUserIP } from "@/utils/GetUserIP";
+import { applyRateLimit } from "@/utils/rateLimiter";
 
 function corsResponse(body, status = 200) {
   return NextResponse.json(body, {
@@ -26,13 +28,15 @@ export async function OPTIONS() {
 }
 
 export async function POST(req) {
+  const userip = await getUserIP(req);
+  await applyRateLimit(userip);
   await connectDB();
   try {
     const body = await req.json();
-    const { search, ownerId } = body; 
+    const { search, ownerId } = body;
     const createdBy = ownerId;
     let query = {};
-   
+
     if (search && search.trim() !== "") {
       query.title = { $regex: search, $options: "i" };
     }
@@ -42,12 +46,12 @@ export async function POST(req) {
     }
 
     const tasks = await TaskModel.find(
-  {
-    title: { $regex: search, $options: "i" },
-    createdBy: createdBy 
-  }
-);
-console.log(tasks);
+      {
+        title: { $regex: search, $options: "i" },
+        createdBy: createdBy
+      }
+    );
+    console.log(tasks);
     return corsResponse({ response: tasks }, 200);
   } catch (error) {
     return corsResponse({ error: error.message || "Error interno" }, 500);

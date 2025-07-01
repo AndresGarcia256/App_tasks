@@ -1,6 +1,7 @@
 import jwt from "jsonwebtoken";
 
 export async function requireAuth(req) {
+  
   const cookie = req.headers.get("cookie") || "";
   const token = cookie
     .split(";")

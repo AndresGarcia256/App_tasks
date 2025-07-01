@@ -28,8 +28,10 @@ export async function OPTIONS() {
 }
 
 export const POST = async (req) => {
+  
   const userip = await getUserIP(req);
   await applyRateLimit(userip);
+
   const { name, email, password } = await req.json();
 
   if (!password || password.length < 6) {

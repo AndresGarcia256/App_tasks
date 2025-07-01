@@ -1,6 +1,11 @@
 import { TaskModel } from "@/models/Tarea";
 import connectDB from "@/app/lib/db.js";
 import { NextResponse } from "next/server";
+import { getUserIP } from "@/utils/GetUserIP";
+import { applyRateLimit } from "@/utils/rateLimiter";
+
+
+
 
 
 function corsResponse(body, status = 200) {
@@ -26,6 +31,8 @@ export async function OPTIONS() {
 }
 
 export async function GET(req) {
+  const userip = await getUserIP(req);
+  await applyRateLimit(userip);
   await connectDB();
   try {
     const { searchParams } = new URL(req.url);
@@ -35,7 +42,7 @@ export async function GET(req) {
     }
     console.log("Obteniendo tareas para el tablero:", boardId);
 
-    const userBoards = await TaskModel.find({boardId: boardId});
+    const userBoards = await TaskModel.find({ boardId: boardId });
 
     return corsResponse({ data: userBoards }, 200);
   } catch (error) {
