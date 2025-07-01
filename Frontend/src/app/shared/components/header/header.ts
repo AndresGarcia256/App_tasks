@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Auth } from '../../../core/services/auth';
+import { Auth } from '../../../core/services/auth/auth';
 import { RouterLink, Router } from '@angular/router';
 @Component({
   selector: 'app-header',

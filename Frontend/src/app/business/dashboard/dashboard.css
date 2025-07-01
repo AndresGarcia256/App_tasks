@@ -91,8 +91,7 @@
   text-decoration: none;
 }
 .dashboard-card-add {
-  background: #f1f5f9 !important; /* gris claro */
-  color: #64748b;
+  background: #f1f5f9 !important; 
   border: 2px dashed #cbd5e1;
   transition: background 0.2s, border 0.2s;
 }
@@ -107,4 +106,24 @@
   color: #64748b;
   line-height: 1;
   user-select: none;
+}
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  align-items: stretch;
+  margin-bottom: 3rem;
+}
+.delete-btn {
+  background: transparent;
+  border: none;
+  float: right;
+  font-size: 1.1em;
+  cursor: pointer;
+  margin-left: 4px;
+  color: #d9534f;
+  transition: color 0.2s;
+}
+.delete-btn:hover {
+  color: #b52a1a;
 }

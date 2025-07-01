@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Auth } from '../../core/services/auth';
+import { Auth } from '../../core/services/auth/auth';
 
 @Component({
   selector: 'app-profile',

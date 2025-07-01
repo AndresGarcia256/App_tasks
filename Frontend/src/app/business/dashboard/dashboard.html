@@ -2,32 +2,29 @@
 
 
 <div class="dashboard-grid">
-    <div *ngIf="boards">
-      <div *ngFor="let board of boards" class="dashboard-card">
-        <div class="dashboard-card-content">
-          <h4 class="dashboard-board-title">{{ board.name }}</h4>
-          <p class="dashboard-board-desc">{{ board.description }}</p>
-        </div>
-      </div>
+  <div *ngFor="let board of boards; let i = index" class="dashboard-card">
+    <a [routerLink]="['/tasks', board._id]">
+    <div class="dashboard-card-content">
+      <h4 class="dashboard-board-title">{{ board.name }}</h4>
+      <p class="dashboard-board-desc">{{ board.description }}</p>
     </div>
-    <div *ngIf="!boards">
-      <div class="dashboard-card">
-        <div class="dashboard-card-content">
-          <h4 class="dashboard-board-title">No hay tableros disponibles</h4>
-          <p class="dashboard-board-desc">Crea un nuevo tablero para comenzar.</p>
-        </div>
-      </div>
-    </div>
-    <div
-      class="dashboard-card dashboard-card-add"
-      (click)="onAddBoard()"
-      title="Crear nuevo tablero"
-      tabindex="0"
-      style="cursor:pointer;"
-    >
-    <div class="dashboard-card-content" style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%;">
-      <span class="dashboard-add-icon">+</span>
-    </div>
-      
-    </div>
+    </a>
+    <button class="delete-btn" title="Eliminar tablero" (click)="DeleteBoard(board._id);" style="position: absolute; top: 8px; right: 8px;">🗑️</button>
+  </div>
+
+  <div
+    class="dashboard-card dashboard-card-add"
+  >
+    <ng-container *ngIf="showAddForm">
+      <form [formGroup]="boardForm" (ngSubmit)="onSubmit()" style="width: 100%; display: flex; flex-direction: column; align-items: center;" >
+        <input id="name" formControlName="name" type="text" placeholder="Título del tablero" required style="margin-bottom: 0.5rem; width: 90%;">
+        <input id="description" formControlName="description" type="text" placeholder="Descripción" required style="margin-bottom: 0.5rem; width: 90%;" >
+        <button type="submit"  >Crear</button>
+      </form>
+    </ng-container>
+
+    <ng-container *ngIf="!showAddForm">
+      <span class="dashboard-add-icon" (click)="showAddFormToggle()">+</span>
+    </ng-container>
+  </div>
 </div>

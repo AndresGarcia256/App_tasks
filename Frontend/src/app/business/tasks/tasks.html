@@ -1,0 +1,47 @@
+<div class="tasks-board">
+  <div class="tasks-column">
+    <div class="tasks-column-label"> 
+      Por hacer
+      <button class="add-btn" title="Agregar tarea" (click)="agregarTarea('porHacer')">➕</button>
+    </div>
+    <div class="postit" *ngFor="let tarea of tareasPorHacer; let i = index">
+      {{ tarea }}
+      <button class="edit-btn" title="Editar" (click)="editarTarea(i, 'porHacer')">✏️</button>
+      <button class="delete-btn" title="Eliminar" (click)="eliminarTarea(i, 'porHacer')">🗑️</button>
+    </div>
+  </div>
+  <div class="tasks-column">
+    <div class="tasks-column-label">
+      En curso
+      <button class="add-btn" title="Agregar tarea" (click)="agregarTarea('enCurso')">➕</button>
+    </div>
+    <div class="postit" *ngFor="let tarea of tareasEnProgreso; let i = index">
+      {{ tarea }}
+      <button class="edit-btn" title="Editar" (click)="editarTarea(i, 'enCurso')">✏️</button>
+      <button class="delete-btn" title="Eliminar" (click)="eliminarTarea(i, 'enCurso')">🗑️</button>
+    </div>
+  </div>
+  <div class="tasks-column">
+    <div class="tasks-column-label">
+      Finalizada
+      <button class="add-btn" title="Agregar tarea" (click)="agregarTarea('finalizadas')">➕</button>
+    </div>
+    <div class="postit" *ngFor="let tarea of tareasCompletadas; let i = index">
+      {{ tarea }}
+      <button class="edit-btn" title="Editar" (click)="editarTarea(i, 'finalizadas')">✏️</button>
+      <button class="delete-btn" title="Eliminar" (click)="eliminarTarea(i, 'finalizadas')">🗑️</button>
+    </div>
+  </div>
+</div>
+
+<!-- Formulario modal para editar tarea -->
+<div *ngIf="showEditForm" class="modal-overlay">
+  <div class="modal-content">
+    <h3>Editar tarea</h3>
+    <input [(ngModel)]="editValue" type="text" style="width: 100%; margin-bottom: 1rem;" />
+    <div style="text-align: right;">
+      <button (click)="guardarEdicion()">Guardar</button>
+      <button (click)="cancelarEdicion()" style="margin-left: 8px;">Cancelar</button>
+    </div>
+  </div>
+</div>

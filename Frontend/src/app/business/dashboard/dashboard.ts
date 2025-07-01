@@ -1,19 +1,32 @@
 import { Component } from '@angular/core';
-import { Boards } from '../../core/services/boards';
-import { Auth } from '../../core/services/auth';
+import { Boards } from '../../core/services/board/boards';
+import { Auth } from '../../core/services/auth/auth';
 import { CommonModule } from '@angular/common'; 
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import { RouterLink, Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [CommonModule],
+  imports: [ReactiveFormsModule, CommonModule, RouterLink],
   templateUrl: './dashboard.html',
   styleUrl: './dashboard.css'
 })
 export class Dashboard {
   id: string = '';
   boards: any[] = [];
+  showAddForm = false;
 
-  constructor(private auth: Auth, private boardsService: Boards) {}
+  boardForm = new FormGroup({
+    name: new FormControl(''),
+    description: new FormControl('')
+  });
+  constructor(private auth: Auth, private boardsService: Boards, private fb: FormBuilder) {
+    this.boardForm = this.fb.group({
+      name: ['', Validators.required],
+      description: ['', Validators.required],
+    });
+  }
 
   ngOnInit() {
     this.auth.checkSession().subscribe({
@@ -43,8 +56,35 @@ export class Dashboard {
       }
     });
   }
-  onAddBoard() {
-    
-    // Aquí abres un modal, navegas o ejecutas la lógica para crear un tablero
+
+showAddFormToggle() {
+  this.showAddForm = true;
+  this.boardForm.reset();
 }
+
+onSubmit() {
+  if (this.boardForm.valid) {
+    const newBoard = {
+      ...this.boardForm.value,
+      ownerId: this.id
+    };
+    this.boardsService.Createboard(newBoard as any).subscribe(() => {
+      this.showAddForm = false;
+      this.boardForm.reset();
+      this.getBoards();
+    });
+  }
+  this.getBoards();
+  }
+  DeleteBoard(id: string) {
+    this.boardsService.DeleteBoard(id).subscribe({
+      next: (res) => {
+        console.log('Tablero eliminado:', res);
+      },
+      error: (err) => {
+        console.error('Error al eliminar:', err);
+      }
+    });
+  }
 }
+

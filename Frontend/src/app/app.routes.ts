@@ -1,5 +1,5 @@
 import {Routes} from '@angular/router';
-import {AuthGuard} from './core/services/AuthGuard.js';
+import {AuthGuard} from './core/services/AuthGuard/AuthGuard.js';
 export const routes: Routes = [
     {
         path: '',
@@ -19,6 +19,16 @@ export const routes: Routes = [
                 path: 'tables',
                 canActivate: [AuthGuard],
                 loadComponent: () => import('./business/tables/tables.js').then(m => m.Tables)
+            },
+            {
+                path: 'tables',
+                canActivate: [AuthGuard],
+                loadComponent: () => import('./business/tables/tables.js').then(m => m.Tables)
+            },
+            {
+                path: 'tasks/:id',
+                canActivate: [AuthGuard],
+                loadComponent: () => import('./business/tasks/tasks.js').then(m => m.Taskss)
             },
         ]
     },
