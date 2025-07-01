@@ -1,103 +1,106 @@
 # App_tasks
 
-App_tasks es una aplicación orientada a la gestión de tareas, desarrollada utilizando TypeScript, HTML, JavaScript y CSS. Este repositorio contiene todo el código fuente necesario para ejecutar, mantener y extender la aplicación.
+**App_tasks** es una aplicación para la gestión eficiente de tareas, desarrollada con TypeScript, HTML, JavaScript y CSS. Este repositorio contiene todo lo necesario para que puedas ejecutar, mantener y extender la aplicación.
 
-## Características principales
+---
 
-- **Gestión de tareas:** Crea, edita y elimina tareas fácilmente.
-- **Interfaz intuitiva:** Diseño amigable para el usuario, adaptable a distintos dispositivos.
-- **Tecnologías modernas:** Uso de TypeScript para una mejor mantenibilidad y escalabilidad del código.
-- **Persistencia de datos:** (Describe aquí cómo se almacenan las tareas, por ejemplo, localStorage, backend, etc.)
-- **Organización y filtros:** (Si existen, describe la posibilidad de organizar, filtrar o categorizar tareas.)
+## 🚀 Características principales
 
-## Tecnologías utilizadas
+- **Gestión de tareas:** Crea, edita, marca como completadas o elimina tareas fácilmente.
+- **Tableros personalizados:** Organiza las tareas en tableros temáticos (hogar, trabajo, pendientes, etc.).
+- **Interfaz intuitiva:** Diseño adaptable y fácil de usar desde cualquier dispositivo.
+- **Búsqueda y filtros:** Encuentra rápidamente tareas usando el buscador y filtros disponibles.
+- **Tecnologías modernas:** Uso de TypeScript para código robusto y escalable.
+- **Persistencia de datos:** Las tareas y usuarios se almacenan en una base de datos MongoDB mediante un backend Node.js.
+- **Autenticación segura:** Registro, inicio/cierre de sesión y validación de sesiones.
+
+---
+
+## 🛠️ Tecnologías utilizadas
 
 - **TypeScript** (29%)
 - **HTML** (26.2%)
 - **JavaScript** (23.6%)
 - **CSS** (21.2%)
+- **Node.js**, **Express** y **MongoDB** en backend
 
-## Instalación
+---
 
-1. Clona el repositorio:
+## ⚙️ Instalación
+
+1. **Clona el repositorio:**
    ```bash
    git clone https://github.com/AndresGarcia256/App_tasks.git
    cd App_tasks
    ```
-   En la carpeta backend tendrás que configurar el archivo env.local con las siguientes variables:
+
+2. **Configura las variables de entorno para el backend:**
+
+   Crea un archivo `env.local` en la carpeta `backend` con este contenido:
    ```
-   PASSWORD= contraseña del usuario admin
-   USER= nombre del usuario admin
+   PASSWORD=contraseña_del_usuario_admin
+   USER=nombre_del_usuario_admin
    HOST=localhost
-   MONGODB_URI= dirección de mongo
+   MONGODB_URI=tu_uri_de_mongodb
    NEXTAUTH_URL=http://localhost:3000
-   NEXTAUTH_SECRET=your_secret_key
+   NEXTAUTH_SECRET=tu_clave_secreta
    ```
-   Si se está corriendo de manera local con tu propio host de MongoDB Atlas tendrás que apuntar tu IP hacia tu instancia local, para permitir el tráfico desde tu dispositivo hacia Atlas.
+   > Si usas MongoDB Atlas, asegúrate de autorizar tu IP para acceder a la base de datos desde tu equipo.
 
-2. Instala las dependencias (si aplica):
+3. **Instala las dependencias de ambos proyectos:**
 
-   ```bash
-   cd frontend
-   npm install
-   ng serve
-   ```
+   - En el frontend:
+     ```bash
+     cd frontend
+     npm install
+     ng serve
+     ```
 
-   En otra consola:
-   ```bash
-   cd App_tasks
-   cd backend
-   npm install
-   npm run dev
-   ```
-
-3. Ejecuta la aplicación:
-   ```bash
-   npm start
-   ```
-
-## Uso
-
-1. Abre la aplicación en tu navegador.
-2. Podrás iniciar sesión y registrarte.
-3. Podrás crear tableros donde almacenar las tareas de hogar, trabajo, pendientes, etc.
-4. Crea o marca las tareas como completadas o elimínalas según sea necesario.
-5. Si tienes muchas tareas podrás buscar entre todas por medio de un buscador.
-
-## Endpoints CRUD y Funcionalidad Backend
-
-La API de App_tasks está organizada en tres grandes módulos: autenticación, tableros y tareas. Cada subcarpeta contiene un archivo `routes.js` que define los endpoints REST correspondientes.
-
-### 1. Autenticación (`/api/auth`)
-- **POST `/api/auth/Login`**  
-  Inicia sesión en la aplicación. Recibe credenciales y retorna un token o sesión.
-- **POST `/api/auth/Register`**  
-  Registra un nuevo usuario en el sistema.
-- **GET `/api/auth/sesion`**  
-  Verifica o retorna el estado de la sesión actual.
-- **POST `/api/auth/signout`**  
-  Cierra la sesión del usuario autenticado.
-
-### 2. Tableros (`/api/Tablero`)
-- **DELETE `/api/Tablero/borrartablero`**  
-  Elimina un tablero específico del usuario.
-- **POST `/api/Tablero/CreateBoard`**  
-  Crea un nuevo tablero para organizar tareas.
-- **GET `/api/Tablero/Getpersonalboards`**  
-  Devuelve todos los tableros personales del usuario autenticado.
-
-### 3. Tareas (`/api/Tarea`)
-- **DELETE `/api/Tarea/borrartarea`**  
-  Elimina una tarea específica.
-- **POST `/api/Tarea/CreateTask`**  
-  Crea una nueva tarea asociada a un tablero.
-- **PUT `/api/Tarea/edittask`**  
-  Edita/actualiza una tarea existente.
-- **GET `/api/Tarea/FindTasks`**  
-  Realiza una búsqueda de tareas, permitiendo filtrar por distintos criterios.
-- **GET `/api/Tarea/Gettasks`**  
-  Devuelve todas las tareas del usuario o tablero especificado.
-
-> Cada endpoint está definido en un archivo `routes.js` correspondiente a su entidad, lo que facilita el mantenimiento y la escalabilidad del backend.
+   - En otra terminal, inicia el backend:
+     ```bash
+     cd ../backend
+     npm install
+     npm run dev
+     ```
 
 ---
+
+## ▶️ Ejecución
+
+- Accede a la aplicación desde tu navegador en `http://localhost:4200` (Angular frontend).
+- El backend corre por defecto en `http://localhost:3000`.
+
+---
+
+## 💡 Uso básico
+
+1. Ingresa a la aplicación y crea una cuenta o inicia sesión.
+2. Crea tableros para organizar tus tareas según proyecto o categoría.
+3. Añade, edita, marca como completadas o elimina tus tareas.
+4. Utiliza el buscador para encontrar tareas específicas rápidamente.
+
+---
+
+## 🖇️ Endpoints principales del backend
+
+La API RESTful está organizada en tres módulos: autenticación, tableros y tareas. Cada uno tiene su archivo `routes.js` correspondiente.
+
+### 1. Autenticación (`/api/auth`)
+- **POST `/api/auth/Login`**: Iniciar sesión.
+- **POST `/api/auth/Register`**: Registrar nuevo usuario.
+- **GET `/api/auth/sesion`**: Verificar sesión actual.
+- **POST `/api/auth/signout`**: Cerrar sesión.
+
+### 2. Tableros (`/api/Tablero`)
+- **DELETE `/api/Tablero/borrartablero`**: Eliminar tablero.
+- **POST `/api/Tablero/CreateBoard`**: Crear nuevo tablero.
+- **GET `/api/Tablero/Getpersonalboards`**: Listar tableros personales.
+
+### 3. Tareas (`/api/Tarea`)
+- **DELETE `/api/Tarea/borrartarea`**: Eliminar tarea.
+- **POST `/api/Tarea/CreateTask`**: Crear tarea asociada a un tablero.
+- **PUT `/api/Tarea/edittask`**: Editar/actualizar tarea.
+- **GET `/api/Tarea/FindTasks`**: Buscar tareas con filtros.
+- **GET `/api/Tarea/Gettasks`**: Obtener tareas de un usuario o tablero.
+
+> Todos los endpoints están definidos en archivos `routes.js` específicos para cada módulo, lo que facilita el mantenimiento y la escalabilidad.
