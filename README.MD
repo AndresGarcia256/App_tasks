@@ -72,6 +72,7 @@
 
 > **Nota importante:**  
 > La primera vez que inicies el servidor backend, cada endpoint puede tardar algunos segundos en responder, ya que el servidor estará cargando los módulos y realizando la compilación inicial. Ten paciencia, este proceso solo ocurre en el primer arranque.
+> Para esta prueba tecnica se proporcionara el archivo env.local. para facilitar el servicio de mongodb atlas en el cual se maneja la base de datos
 
 ---
 
@@ -85,9 +86,6 @@
 ---
 
 ## 🗂️ Estructura del Frontend
-
-La estructura del frontend está diseñada para la claridad, reutilización de componentes y separación de responsabilidades.  
-![image1](image1)
 
 **Principales carpetas y su propósito:**
 
@@ -144,17 +142,3 @@ La API RESTful está organizada en tres módulos: autenticación, tableros y tar
 - **GET `/api/Tarea/Gettasks`**: Obtener tareas de un usuario o tablero.
 
 > Todos los endpoints están definidos en archivos `routes.js` específicos para cada módulo, lo que facilita el mantenimiento y la escalabilidad.
-
----
-
-## 📬 Contribuciones
-
-¡Las contribuciones son bienvenidas! Siéntete libre de abrir issues o pull requests para sugerencias, reportes de bugs o mejoras.
-
----
-
-## 📄 Licencia
-
-Este proyecto está bajo la licencia MIT. Consulta el archivo LICENSE para más información.
-
----
